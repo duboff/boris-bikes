@@ -20,10 +20,15 @@ module BikeContainer
 
   def dock(bike)
     raise "Station is full" if full?
+    raise "Need to enter a bike to dock" if bike.nil?
+    raise "The argument passed is wrong" if !bike.is_a?(Bike)
     bikes << bike
   end
 
   def release(bike)
+    raise "This bike is not in the container" if !bikes.include?(bike) && bike.is_a?(Bike)
+    raise "Need to enter a bike to release" if bike.nil?
+    raise "The argument passed is wrong" if !bike.is_a?(Bike)
     bikes.delete(bike)
   end
 

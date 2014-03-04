@@ -38,6 +38,25 @@ describe ContainerHolder do
     holder.dock(broken_bike)
     holder.dock(working_bike)
     expect(holder.available_bikes).to eq [working_bike]
-  end 
+  end
 
+  it "should not release a bike that's not in contianer" do 
+    expect(lambda { holder.release(Bike.new) }).to raise_error(RuntimeError)
+  end
+
+  it "should raise error if arg is empty" do 
+    expect(lambda { holder.release() }).to raise_error(ArgumentError)
+  end
+  
+  it "should raise error if arg is not a bike" do 
+    expect(lambda { holder.release(2) }).to raise_error(RuntimeError)
+  end
+
+  it "should raise error if arg is empty" do 
+    expect(lambda { holder.dock() }).to raise_error(ArgumentError)
+  end
+
+  it "should raise error if arg is not a bike" do 
+    expect(lambda { holder.dock(2) }).to raise_error(RuntimeError)
+  end
 end
