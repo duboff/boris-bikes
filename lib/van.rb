@@ -16,14 +16,14 @@ class Van
   def release_bikes_to(container)
     bikes.each do |bike|
       container.dock(bike)
-      release(bike)
+      release
     end
   end
 
   def collect_fixed(garage)
     garage.bikes.each do |bike| 
       self.dock(bike)
-      garage.release(bike)
+      garage.release
     end 
   end
 
